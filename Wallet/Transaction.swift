@@ -10,41 +10,41 @@ import Foundation
 
 class Transaction: NSObject, NSCoding {
     
-    private var _value = [Double]()
-    private var _desc = [String]()
-    private var _categ = [String]()
-    private var _kind = [String]()
-    //private var _currentDate = [Date]()
+    private var _value : String = ""
+    private var _desc : String = ""
+    private var _categ : String = ""
+    private var _kind : String = ""
+    private var _currentDate : String = ""
     
     override init() {}
     
     
-    init(value: Double, desc: String, categ: String, kind: String) {
-        self._value = [value]
-        self._desc = [desc]
-        self._categ = [categ]
-        self._kind = [kind]
-        //self._currentDate = [currentDate]
+    init(value: String, desc: String, categ: String, kind: String, currentDate: String) {
+        self._value = value
+        self._desc = desc
+        self._categ = categ
+        self._kind = kind
+        self._currentDate = currentDate
     }
     
     
     required init(coder decoder: NSCoder) {
         
-        if let valueObject = decoder.decodeObject(forKey: "value") as? Double {
-            _value = [valueObject]
+        if let valueObject = decoder.decodeObject(forKey: "value") as? String {
+            _value = valueObject
         }
         if let descObject = decoder.decodeObject(forKey: "desc") as? String {
-            _desc = [descObject]
+            _desc = descObject
         }
         if let categObject = decoder.decodeObject(forKey: "categ") as? String {
-            _categ = [categObject]
+            _categ = categObject
         }
         if let kindObject = decoder.decodeObject(forKey: "kind") as? String {
-            _kind = [kindObject]
+            _kind = kindObject
         }
-       /* if let dateObject = decoder.decodeObject(forKey: "currentDate") as? Date {
-            _currentDate = [dateObject]
-        }    */
+        if let dateObject = decoder.decodeObject(forKey: "currentDate") as? String {
+            _currentDate = dateObject
+        }
     }
     
     
@@ -54,10 +54,10 @@ class Transaction: NSObject, NSCoding {
         coder.encode(_desc, forKey: "desc")
         coder.encode(_categ, forKey: "categ")
         coder.encode(_kind, forKey: "kind")
-        //coder.encode(_currentDate, forKey: "currentDate")  
+        coder.encode(_currentDate, forKey: "currentDate")
     }
     
-    var value: [Double] {
+    var value: String {
         get {
             return _value
         }
@@ -65,7 +65,7 @@ class Transaction: NSObject, NSCoding {
             _value = newValue
         }
     }
-    var desc: [String] {
+    var desc: String {
         get {
             return _desc
         }
@@ -73,7 +73,7 @@ class Transaction: NSObject, NSCoding {
             _desc = newValue
         }
     }
-    var categ: [String] {
+    var categ: String {
         get {
             return _categ
         }
@@ -81,7 +81,7 @@ class Transaction: NSObject, NSCoding {
             _categ = newValue
         }
     }
-    var kind: [String] {
+    var kind: String {
         get {
             return _kind
         }
@@ -89,9 +89,13 @@ class Transaction: NSObject, NSCoding {
             _kind = newValue
         }
     }
-    /*var currentDate: [Date] {
-        return _currentDate = [Date().hashValue]
-    }*/
-    
+    var currentDate : String {
+        get{
+            return _currentDate
+        }
+        set {
+            _kind = newValue
+        }
+}
 }
 

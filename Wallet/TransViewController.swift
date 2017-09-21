@@ -26,53 +26,57 @@ class TransViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
     
     @IBOutlet weak var categotyName: UITextField!
     
-    @IBOutlet weak var currentCategory: UILabel!
+    let model = DataStore.sharedInstnce
     
-    var myTransactions = Transaction()
+    var myTransaction = [Transaction]()
     
-   /* @IBAction func chooseCategory(_ sender: UIButton) {
-        if let item = itemCategoryName {
-            currentCategory.text = item
-        }
-    }*/
-    
-    @IBAction func saveTransaction(_ sender: UIBarButtonItem) {
-        if !value.text!.isEmpty {
-            myTransactions.value.append(Double(value.text!)!)
-        }
-        if !desc.text!.isEmpty {
-            myTransactions.desc.append(desc.text!)
-        }
-        if !categotyName.text!.isEmpty {
-            myTransactions.categ.append(categotyName.text!)
-        }
-        if !kindOfTransaction.text!.isEmpty {
-            myTransactions.kind.append(kindOfTransaction.text!)
-        }
-        
-       /* myTransactions(value: Double(value.text!), desc: desc.text!, categ: categotyName.text!, kind: kindOfTransaction.text!)*/
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    func getTime() -> String {
         let date = Date()
         
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
         formatter.timeStyle = .short
+        return formatter.string(from: date)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
-        currentDate.text = "\(formatter.string(from: date))"
+        /*let date = Date()
+        
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .short
+        
+        currentDate.text = "\(formatter.string(from: date))"*/
+        currentDate.text = getTime()
+        
         listOfTransactions.isHidden = true
         
-        if let item = itemCategoryName {
-            currentCategory.text = item
-            categotyName.text = item
-        }
-        print(itemCategoryName)
+       // self.value.delegate = self
+        
+       // self.myTransaction = self.model.loadData()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    func showMessage(message: String){
+        let alert = UIAlertController(title: "Warning", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    @IBAction func save(_ sender: Any) {
+        if (value.text?.isEmpty)! || (desc.text?.isEmpty)! || (categotyName.text?.isEmpty)! || (kindOfTransaction.text?.isEmpty)! {
+            showMessage(message: "You should put all information")
+        } else {
+            let newTransaction = Transaction(value: value.text!, desc: desc.text!, categ: categotyName.text!, kind: kindOfTransaction.text!, currentDate: getTime())
+            model.saveTransaction(item: newTransaction)
+            _ = navigationController?.popViewController(animated: true)
+        }
+    
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -99,15 +103,32 @@ class TransViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
             listOfTransactions.isHidden = false
         }
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        var result = true
+        
+            let disallowedCharacterSet = NSCharacterSet(charactersIn: "0123456789.-")
+            let replacementStringIsLegal = string.rangeOfCharacter(from: disallowedCharacterSet as CharacterSet)
+            result = (replacementStringIsLegal != nil)
+        
+    return result
     }
-    */
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "chooseCategoryItem" {
+            
+            if let vc = segue.destination as? CategoryViewController {
+                vc.enter = true
+                vc.saveAction = {selectedCategory in
+                    self.categotyName.text = selectedCategory
+                }
+            }
+        }
+    }
+    
+
+    
 }
+
+
+

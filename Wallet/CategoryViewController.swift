@@ -10,18 +10,22 @@ import UIKit
 
 class CategoryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
     
-    var category = DataStore.sharedInstnce
-    
     @IBOutlet weak var newCategoryItem: UITextField!
     @IBOutlet weak var CategoriesTable: UITableView!
     
+    let model = DataStore.sharedInstnce
+    
+    var myCategory = [CategoriesItem]()
+
+    var enter : Bool = false
     
     @IBAction func addCategory(_ sender: UIButton) {
         
         if newCategoryItem.text != "" {
             if let unwrappedText = newCategoryItem.text {
                 let newCategoryListItem = CategoriesItem(item: unwrappedText.capitalized)
-                self.saveData(item: newCategoryListItem)
+                model.saveCategory(item: newCategoryListItem)
+                myCategory.append(newCategoryListItem)
             }
             newCategoryItem.text = ""
             view.endEditing(true)
@@ -30,32 +34,15 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
         
     }
     
-    var filePath: String {
-        let manager = FileManager.default
-        let url = manager.urls(for: .documentDirectory, in: .userDomainMask).first
-        return (url!.appendingPathComponent("Data").path)
-    }
-    
-    private func saveData(item: CategoriesItem) {
-        self.category.categoriesItems.append(item)
-        NSKeyedArchiver.archiveRootObject(self.category.categoriesItems, toFile: filePath)
-    }
-    
-    private func loadData() {
-        if let ourData = NSKeyedUnarchiver.unarchiveObject(withFile: filePath) as? [CategoriesItem] {
-            self.category.categoriesItems = ourData
-        }
-    }
-    
-    private func deleteData(indexPath: IndexPath) {
-        self.category.categoriesItems.remove(at: indexPath.row)
-        NSKeyedArchiver.archiveRootObject(self.category.categoriesItems, toFile: filePath)
-        
-    }
+    var saveAction : ((String) -> ())?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.myCategory = self.model.loadData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -64,12 +51,12 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
     }
    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return category.categoriesItems.count
+        return myCategory.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
-        cell.textLabel?.text = category.categoriesItems[indexPath.row].name
+        cell.textLabel?.text = myCategory[indexPath.row].name
         return cell
     }
     
@@ -80,23 +67,24 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            deleteData(indexPath: indexPath)
+            myCategory.remove(at: indexPath.row)
+            model.deleteCategory(indexPath: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
             tableView.reloadData()
         }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        /*if tableView.cellForRow(at: indexPath)?.accessoryType == UITableViewCellAccessoryType.checkmark {
-            tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.none
-        } else {
-            tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCellAccessoryType.checkmark
-        }*/
-        self.performSegue(withIdentifier: "chooseCategoryItem", sender: category.categoriesItems[indexPath.row])
+        if enter {
+            let selectedCategory = myCategory[indexPath.row].name
+            self.saveAction!(selectedCategory)
+            self.navigationController?.popViewController(animated: true)
+
+        }
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        //if segue.identifier == "chooseCategoryItem" {
+   /* override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "chooseCategoryItem" {
             /*let upcoming : TransViewController = (segue.destination as? TransViewController)!
             let indexPath = self.CategoriesTable.indexPathForSelectedRow
             let categorySelected = self.category.categoriesItems[(indexPath?.row)!] as? String
@@ -108,6 +96,6 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
             self.CategoriesTable.deselectRow(at: indexPath!, animated: true)*/
             
             
-   // }
-    }
+        }
+    }*/
 }

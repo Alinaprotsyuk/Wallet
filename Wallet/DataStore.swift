@@ -13,4 +13,70 @@ class DataStore {
     static let sharedInstnce = DataStore()
     private init() {}
     var categoriesItems: [CategoriesItem] = []
+    var transactionsItems: [Transaction] = []
+    
+    
+    
+    var filePathCategory: String {
+        let manager = FileManager.default
+        let url = manager.urls(for: .documentDirectory, in: .userDomainMask).first
+        return (url!.appendingPathComponent("Data").path)
+    }
+    
+    var filePathTransaction: String {
+        let manager = FileManager.default
+        let url = manager.urls(for: .documentDirectory, in: .userDomainMask).first
+        return (url!.appendingPathComponent("Transaction").path)
+    }
+    
+  
+    func saveCategory(item: CategoriesItem) {
+        self.categoriesItems.append(item)
+        NSKeyedArchiver.archiveRootObject(self.categoriesItems, toFile: filePathCategory)
+    }
+    
+    func saveTransaction(item: Transaction) {
+        self.transactionsItems.append(item)
+        NSKeyedArchiver.archiveRootObject(self.transactionsItems, toFile: filePathTransaction)
+    }
+    
+
+    func loadData() -> [Transaction] {
+        if let ourData = NSKeyedUnarchiver.unarchiveObject(withFile: filePathTransaction) as? [Transaction] {
+            self.transactionsItems = ourData
+        }
+        return self.transactionsItems
+    }
+    
+    func loadData() -> [CategoriesItem] {
+        if let ourData = NSKeyedUnarchiver.unarchiveObject(withFile: filePathCategory) as? [CategoriesItem] {
+            self.categoriesItems = ourData
+        }
+        return self.categoriesItems
+    }
+    
+    func deleteCategory(indexPath: Int) {
+        self.categoriesItems.remove(at: indexPath)
+        NSKeyedArchiver.archiveRootObject(self.categoriesItems, toFile: filePathCategory)
+    }
+    
+    func deleteTransaction(indexPath: Int) {
+        transactionsItems.remove(at: indexPath)
+        NSKeyedArchiver.archiveRootObject(transactionsItems, toFile: filePathTransaction)
+    }
+    
+    func calculateBalance(item: [Transaction]) -> Double {
+        var sumaSpending = 0.00
+        var sumaProfit = 0.00
+        var balance = 0.00
+            for object in transactionsItems {
+                if object.kind == "Spending" {
+                    sumaSpending += Double(object.value)! * 100
+                } else {
+                    sumaProfit += Double(object.value)! * 100
+                }
+            }
+        balance = (sumaProfit - sumaSpending) / 100
+        return balance
+    }
 }
