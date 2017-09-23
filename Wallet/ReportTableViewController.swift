@@ -20,7 +20,6 @@ class ReportTableViewController: UITableViewController {
     var storeForExpensesByCategory = [expensesByCategory]()
     
     override func viewDidLoad() {
-        print("load")
         super.viewDidLoad()
         self.tableReport.delegate = self
         self.tableReport.dataSource = self
@@ -28,7 +27,7 @@ class ReportTableViewController: UITableViewController {
         self.allCategories = self.model.loadCategoriesData()
         self.tableReport.reloadData()
         storeForExpensesByCategory = model.calculateCategory(transaction: allTransactions, category: allCategories)
-        print(storeForExpensesByCategory)
+        self.navigationItem.title = "Report"
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -41,11 +40,6 @@ class ReportTableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        print("exit")
-        storeForExpensesByCategory.removeAll()
-        print(storeForExpensesByCategory)
-    }
 
     // MARK: - Table view data source
 

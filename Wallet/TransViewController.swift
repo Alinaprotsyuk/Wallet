@@ -30,20 +30,10 @@ class TransViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
     
     var myTransaction = [Transaction]()
     
-    /*func getTime() -> String {
-        let date = Date()
-        
-        let formatter = DateFormatter()
-        formatter.dateStyle = .medium
-        formatter.timeStyle = .short
-        return formatter.string(from: date)
-    }*/
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.navigationItem.title = "My transaction"
         currentDate.text = model.getTime(date: Date())
-        
         listOfTransactions.isHidden = true
         
         

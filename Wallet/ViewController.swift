@@ -25,6 +25,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.title = "My wallet"
     }
     
     override func viewDidAppear(_ animated: Bool) {

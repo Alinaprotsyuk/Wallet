@@ -8,8 +8,6 @@
 
 import Foundation
 
-
-
 class DataStore {
     
     static let sharedInstnce = DataStore()
@@ -91,8 +89,7 @@ class DataStore {
     }
     
     func calculateCategory (transaction: [Transaction], category: [CategoriesItem]) ->  [expensesByCategory] {
-        
-        
+        expenses = [expensesByCategory]()
         for sortByCategory in category {
             var suma = 0.00
         
@@ -102,10 +99,10 @@ class DataStore {
                 }
             }
             
-            self.expenses.append(expensesByCategory(categoryName: sortByCategory.name, expenses: suma))
+            expenses.append(expensesByCategory(categoryName: sortByCategory.name, expenses: suma))
         }
         
-        return self.expenses
+        return expenses
     }
     
 }

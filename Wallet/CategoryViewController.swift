@@ -38,6 +38,7 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.title = "My categories"
     }
     
     override func viewWillAppear(_ animated: Bool) {
