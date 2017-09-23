@@ -14,6 +14,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     @IBOutlet weak var tableViewTransactions: UITableView!
     
+    @IBOutlet weak var calculateProfirs: UILabel!
+    
+    @IBOutlet weak var calculateSpendings: UILabel!
+    
     let model = DataStore.sharedInstnce
     
     var allTransactions = [Transaction]()
@@ -26,7 +30,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     override func viewDidAppear(_ animated: Bool) {
         self.allTransactions = self.model.loadData()
         self.tableViewTransactions.reloadData()
-        balance.text = String(format:"%.2f", model.calculateBalance(item: allTransactions))
+        balance.text = String(format:"%.2f", model.calculateBalance(item: allTransactions).balance)
+        calculateProfirs.text = String(format:"%.2f", model.calculateBalance(item: allTransactions).allProfits)
+        calculateSpendings.text = String(format:"%.2f", model.calculateBalance(item: allTransactions).allSpendings)
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -35,17 +41,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //print(transaction.transactions.count)
-        return allTransactions.count
-        
+       return allTransactions.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellTrans", for: indexPath) as! TableViewCell
         cell.textLabel?.text = allTransactions[indexPath.row].desc
-        cell.detailTextLabel?.text = allTransactions[indexPath.row].categ + " ☞ " + allTransactions[indexPath.row].currentDate
+        cell.detailTextLabel?.text = allTransactions[indexPath.row].categ + " ☞ " + model.getTime(date: allTransactions[indexPath.row].currentDate)
         cell.valueOfTransaction.text = allTransactions[indexPath.row].value //String (format: "%.2f", allTransactions[indexPath.row].value)
-        
         return cell
+        
     }
  
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool

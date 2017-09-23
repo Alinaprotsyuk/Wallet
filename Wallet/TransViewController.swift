@@ -30,32 +30,23 @@ class TransViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
     
     var myTransaction = [Transaction]()
     
-    func getTime() -> String {
+    /*func getTime() -> String {
         let date = Date()
         
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
         formatter.timeStyle = .short
         return formatter.string(from: date)
-    }
+    }*/
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        /*let date = Date()
-        
-        let formatter = DateFormatter()
-        formatter.dateStyle = .medium
-        formatter.timeStyle = .short
-        
-        currentDate.text = "\(formatter.string(from: date))"*/
-        currentDate.text = getTime()
+        currentDate.text = model.getTime(date: Date())
         
         listOfTransactions.isHidden = true
         
-       // self.value.delegate = self
         
-       // self.myTransaction = self.model.loadData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -72,7 +63,8 @@ class TransViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
         if (value.text?.isEmpty)! || (desc.text?.isEmpty)! || (categotyName.text?.isEmpty)! || (kindOfTransaction.text?.isEmpty)! {
             showMessage(message: "You should put all information")
         } else {
-            let newTransaction = Transaction(value: value.text!, desc: desc.text!, categ: categotyName.text!, kind: kindOfTransaction.text!, currentDate: getTime())
+            let newTransaction = Transaction(value: value.text!, desc: desc.text!, categ: categotyName.text!, kind: kindOfTransaction.text!, currentDate: Date())
+               
             model.saveTransaction(item: newTransaction)
             _ = navigationController?.popViewController(animated: true)
         }

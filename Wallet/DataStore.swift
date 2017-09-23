@@ -14,8 +14,7 @@ class DataStore {
     private init() {}
     var categoriesItems: [CategoriesItem] = []
     var transactionsItems: [Transaction] = []
-    
-    
+    var expenses : [expensesByCategory] = []    
     
     var filePathCategory: String {
         let manager = FileManager.default
@@ -65,7 +64,7 @@ class DataStore {
         NSKeyedArchiver.archiveRootObject(transactionsItems, toFile: filePathTransaction)
     }
     
-    func calculateBalance(item: [Transaction]) -> Double {
+    func calculateBalance(item: [Transaction]) -> (balance: Double,allSpendings: Double, allProfits: Double) {
         var sumaSpending = 0.00
         var sumaProfit = 0.00
         var balance = 0.00
@@ -77,6 +76,34 @@ class DataStore {
                 }
             }
         balance = (sumaProfit - sumaSpending) / 100
-        return balance
+        return (balance, sumaSpending / 100, sumaProfit / 100)
     }
+    
+    func getTime(date: Date) -> String {
+        //let date = Date()
+        
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .short
+        return formatter.string(from: date)
+    }
+    
+    func calculateCategory (transaction: [Transaction]) ->  [expensesByCategory] {
+        
+        
+        for sortByCategory in transaction {
+            var suma = 0.00
+        
+            for item in transaction {
+                if item.categ == sortByCategory.categ {
+                    suma += Double(item.value)!
+                }
+            }
+            
+            self.expenses.append(expensesByCategory(categoryName: sortByCategory.categ, expenses: suma))
+        }
+        
+        return self.expenses
+    }
+    
 }
