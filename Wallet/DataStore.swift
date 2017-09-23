@@ -8,6 +8,8 @@
 
 import Foundation
 
+
+
 class DataStore {
     
     static let sharedInstnce = DataStore()
@@ -47,7 +49,7 @@ class DataStore {
         return self.transactionsItems
     }
     
-    func loadData() -> [CategoriesItem] {
+    func loadCategoriesData() -> [CategoriesItem] {
         if let ourData = NSKeyedUnarchiver.unarchiveObject(withFile: filePathCategory) as? [CategoriesItem] {
             self.categoriesItems = ourData
         }
@@ -88,19 +90,19 @@ class DataStore {
         return formatter.string(from: date)
     }
     
-    func calculateCategory (transaction: [Transaction]) ->  [expensesByCategory] {
+    func calculateCategory (transaction: [Transaction], category: [CategoriesItem]) ->  [expensesByCategory] {
         
         
-        for sortByCategory in transaction {
+        for sortByCategory in category {
             var suma = 0.00
         
             for item in transaction {
-                if item.categ == sortByCategory.categ {
+                if item.categ == sortByCategory.name {
                     suma += Double(item.value)!
                 }
             }
             
-            self.expenses.append(expensesByCategory(categoryName: sortByCategory.categ, expenses: suma))
+            self.expenses.append(expensesByCategory(categoryName: sortByCategory.name, expenses: suma))
         }
         
         return self.expenses

@@ -42,7 +42,7 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.myCategory = self.model.loadData()
+        self.myCategory = self.model.loadCategoriesData()
     }
     
     override func didReceiveMemoryWarning() {

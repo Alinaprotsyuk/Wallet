@@ -19,7 +19,7 @@
 		3F4B5F481F6D3BD400A5075C /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4B5F471F6D3BD400A5075C /* Transaction.swift */; };
 		3F4B5F571F706A5600A5075C /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4B5F561F706A5600A5075C /* TableViewCell.swift */; };
 		3FE0D2BF1F7688B800183EAC /* ReportTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE0D2BE1F7688B800183EAC /* ReportTableViewController.swift */; };
-		3FE0D2C11F768A4700183EAC /* StructForReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE0D2C01F768A4700183EAC /* StructForReport.swift */; };
+		3FE0D2C31F7697C000183EAC /* ExpensiveByCategoryClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE0D2C21F7697C000183EAC /* ExpensiveByCategoryClass.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,7 +37,7 @@
 		3F4B5F471F6D3BD400A5075C /* Transaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		3F4B5F561F706A5600A5075C /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		3FE0D2BE1F7688B800183EAC /* ReportTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportTableViewController.swift; sourceTree = "<group>"; };
-		3FE0D2C01F768A4700183EAC /* StructForReport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StructForReport.swift; sourceTree = "<group>"; };
+		3FE0D2C21F7697C000183EAC /* ExpensiveByCategoryClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpensiveByCategoryClass.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,7 +75,7 @@
 				3FE0D2BE1F7688B800183EAC /* ReportTableViewController.swift */,
 				3F4B5F561F706A5600A5075C /* TableViewCell.swift */,
 				3F4B5F401F6BFD5B00A5075C /* DataStore.swift */,
-				3FE0D2C01F768A4700183EAC /* StructForReport.swift */,
+				3FE0D2C21F7697C000183EAC /* ExpensiveByCategoryClass.swift */,
 				3F4B5F361F6BC8C200A5075C /* Support files */,
 				3F4B5F461F6C08AB00A5075C /* Transactions */,
 				3F4B5F3B1F6BF53500A5075C /* CategoryPage */,
@@ -187,8 +187,8 @@
 				3F4B5F481F6D3BD400A5075C /* Transaction.swift in Sources */,
 				3F4B5F271F6BC8A200A5075C /* ViewController.swift in Sources */,
 				3F4B5F3A1F6BE21200A5075C /* CategoriesItem.swift in Sources */,
+				3FE0D2C31F7697C000183EAC /* ExpensiveByCategoryClass.swift in Sources */,
 				3F4B5F571F706A5600A5075C /* TableViewCell.swift in Sources */,
-				3FE0D2C11F768A4700183EAC /* StructForReport.swift in Sources */,
 				3FE0D2BF1F7688B800183EAC /* ReportTableViewController.swift in Sources */,
 				3F4B5F381F6BC9DC00A5075C /* CategoryViewController.swift in Sources */,
 				3F4B5F411F6BFD5B00A5075C /* DataStore.swift in Sources */,

@@ -16,28 +16,35 @@ class ReportTableViewController: UITableViewController {
     
     var allTransactions = [Transaction]()
     var allCategories = [CategoriesItem]()
+    
     var storeForExpensesByCategory = [expensesByCategory]()
     
     override func viewDidLoad() {
+        print("load")
         super.viewDidLoad()
         self.tableReport.delegate = self
         self.tableReport.dataSource = self
-        
+        self.allTransactions = self.model.loadData()
+        self.allCategories = self.model.loadCategoriesData()
+        self.tableReport.reloadData()
+        storeForExpensesByCategory = model.calculateCategory(transaction: allTransactions, category: allCategories)
+        print(storeForExpensesByCategory)
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
-    override func viewDidAppear(_ animated: Bool) {
-        self.allTransactions = self.model.loadData()
-        self.allCategories = self.model.loadData()
-        self.tableReport.reloadData()
-        storeForExpensesByCategory = model.calculateCategory(transaction: allTransactions)
-    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        print("exit")
+        storeForExpensesByCategory.removeAll()
+        print(storeForExpensesByCategory)
     }
 
     // MARK: - Table view data source
