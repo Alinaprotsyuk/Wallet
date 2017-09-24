@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class DataStore {
     
@@ -88,6 +89,13 @@ class DataStore {
         return formatter.string(from: date)
     }
     
+    func randomColor() -> UIColor{
+        let red = CGFloat(arc4random_uniform(256))/255.0
+        let green = CGFloat(arc4random_uniform(256))/255.0
+        let blue = CGFloat(arc4random_uniform(256))/255.0
+        return UIColor(red : red, green : green, blue : blue, alpha: 0.5)
+    }
+    
     func calculateCategory (transaction: [Transaction], category: [CategoriesItem]) ->  [expensesByCategory] {
         expenses = [expensesByCategory]()
         for sortByCategory in category {
@@ -99,7 +107,7 @@ class DataStore {
                 }
             }
             
-            expenses.append(expensesByCategory(categoryName: sortByCategory.name, expenses: suma))
+            expenses.append(expensesByCategory(categoryName: sortByCategory.name, expenses: suma, color: randomColor()))
         }
         
         return expenses
