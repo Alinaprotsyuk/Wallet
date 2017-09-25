@@ -21,9 +21,9 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
     
     @IBAction func addCategory(_ sender: UIButton) {
         
-        if newCategoryItem.text != "" {
+       if newCategoryItem.text != "" {
             if let unwrappedText = newCategoryItem.text {
-                let newCategoryListItem = CategoriesItem(item: unwrappedText.capitalized)
+                let newCategoryListItem = CategoriesItem(item: unwrappedText.capitalized, categoryDescription: "without description", type: "")
                 model.saveCategory(item: newCategoryListItem)
                 myCategory.append(newCategoryListItem)
             }
@@ -57,7 +57,7 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
-        cell.textLabel?.text = myCategory[indexPath.row].name
+        cell.textLabel?.text = myCategory[indexPath.row].item
         return cell
     }
     
@@ -77,7 +77,7 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if enter {
-            let selectedCategory = myCategory[indexPath.row].name
+            let selectedCategory = myCategory[indexPath.row].item
             self.saveAction!(selectedCategory)
             self.navigationController?.popViewController(animated: true)
 

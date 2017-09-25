@@ -102,12 +102,12 @@ class DataStore {
             var suma = 0.00
         
             for item in transaction {
-                if item.categ == sortByCategory.name {
+                if item.categ == sortByCategory.item {
                     suma += Double(item.value)!
                 }
             }
             
-            expenses.append(expensesByCategory(categoryName: sortByCategory.name, expenses: suma, color: randomColor()))
+            expenses.append(expensesByCategory(categoryName: sortByCategory.item, expenses: suma, color: randomColor()))
         }
         
         return expenses

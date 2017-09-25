@@ -18,9 +18,10 @@
 		3F4B5F451F6C089900A5075C /* TransViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4B5F441F6C089900A5075C /* TransViewController.swift */; };
 		3F4B5F481F6D3BD400A5075C /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4B5F471F6D3BD400A5075C /* Transaction.swift */; };
 		3F4B5F571F706A5600A5075C /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4B5F561F706A5600A5075C /* TableViewCell.swift */; };
-		3FE0D2BF1F7688B800183EAC /* ReportTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE0D2BE1F7688B800183EAC /* ReportTableViewController.swift */; };
 		3FE0D2C31F7697C000183EAC /* ExpensiveByCategoryClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE0D2C21F7697C000183EAC /* ExpensiveByCategoryClass.swift */; };
 		3FE0D2C51F770F9800183EAC /* ChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE0D2C41F770F9800183EAC /* ChartViewController.swift */; };
+		3FE0D2C71F77F1C100183EAC /* AddCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE0D2C61F77F1C100183EAC /* AddCategoryViewController.swift */; };
+		3FE0D2CA1F7956C600183EAC /* ReportTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE0D2C91F7956C600183EAC /* ReportTableViewCell.swift */; };
 		67C04A5C3BA30BF61A90E38D /* Pods_Wallet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23C95791147BD1BE8E2213D8 /* Pods_Wallet.framework */; };
 /* End PBXBuildFile section */
 
@@ -40,9 +41,10 @@
 		3F4B5F441F6C089900A5075C /* TransViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransViewController.swift; sourceTree = "<group>"; };
 		3F4B5F471F6D3BD400A5075C /* Transaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		3F4B5F561F706A5600A5075C /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
-		3FE0D2BE1F7688B800183EAC /* ReportTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportTableViewController.swift; sourceTree = "<group>"; };
 		3FE0D2C21F7697C000183EAC /* ExpensiveByCategoryClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpensiveByCategoryClass.swift; sourceTree = "<group>"; };
 		3FE0D2C41F770F9800183EAC /* ChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartViewController.swift; sourceTree = "<group>"; };
+		3FE0D2C61F77F1C100183EAC /* AddCategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCategoryViewController.swift; sourceTree = "<group>"; };
+		3FE0D2C91F7956C600183EAC /* ReportTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportTableViewCell.swift; sourceTree = "<group>"; };
 		7258ADA917AA665926E90757 /* Pods-Wallet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wallet.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Wallet/Pods-Wallet.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -81,13 +83,11 @@
 			children = (
 				3F4B5F261F6BC8A200A5075C /* ViewController.swift */,
 				3F4B5F281F6BC8A200A5075C /* Main.storyboard */,
-				3FE0D2BE1F7688B800183EAC /* ReportTableViewController.swift */,
-				3FE0D2C41F770F9800183EAC /* ChartViewController.swift */,
 				3F4B5F561F706A5600A5075C /* TableViewCell.swift */,
 				3F4B5F401F6BFD5B00A5075C /* DataStore.swift */,
-				3FE0D2C21F7697C000183EAC /* ExpensiveByCategoryClass.swift */,
+				3FE0D2C81F79525C00183EAC /* ChartPage */,
 				3F4B5F361F6BC8C200A5075C /* Support files */,
-				3F4B5F461F6C08AB00A5075C /* Transactions */,
+				3F4B5F461F6C08AB00A5075C /* TransactionPage */,
 				3F4B5F3B1F6BF53500A5075C /* CategoryPage */,
 			);
 			path = Wallet;
@@ -108,18 +108,29 @@
 			isa = PBXGroup;
 			children = (
 				3F4B5F371F6BC9DC00A5075C /* CategoryViewController.swift */,
+				3FE0D2C61F77F1C100183EAC /* AddCategoryViewController.swift */,
 				3F4B5F391F6BE21200A5075C /* CategoriesItem.swift */,
 			);
 			name = CategoryPage;
 			sourceTree = "<group>";
 		};
-		3F4B5F461F6C08AB00A5075C /* Transactions */ = {
+		3F4B5F461F6C08AB00A5075C /* TransactionPage */ = {
 			isa = PBXGroup;
 			children = (
 				3F4B5F441F6C089900A5075C /* TransViewController.swift */,
 				3F4B5F471F6D3BD400A5075C /* Transaction.swift */,
 			);
-			name = Transactions;
+			name = TransactionPage;
+			sourceTree = "<group>";
+		};
+		3FE0D2C81F79525C00183EAC /* ChartPage */ = {
+			isa = PBXGroup;
+			children = (
+				3FE0D2C41F770F9800183EAC /* ChartViewController.swift */,
+				3FE0D2C21F7697C000183EAC /* ExpensiveByCategoryClass.swift */,
+				3FE0D2C91F7956C600183EAC /* ReportTableViewCell.swift */,
+			);
+			name = ChartPage;
 			sourceTree = "<group>";
 		};
 		665A1CC8718AC072B86F30C2 /* Pods */ = {
@@ -218,10 +229,12 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Wallet/Pods-Wallet-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/PieCharts/PieCharts.framework",
+				"${BUILT_PRODUCTS_DIR}/TextFieldEffects/TextFieldEffects.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PieCharts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TextFieldEffects.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -271,11 +284,12 @@
 				3F4B5F481F6D3BD400A5075C /* Transaction.swift in Sources */,
 				3F4B5F271F6BC8A200A5075C /* ViewController.swift in Sources */,
 				3F4B5F3A1F6BE21200A5075C /* CategoriesItem.swift in Sources */,
+				3FE0D2CA1F7956C600183EAC /* ReportTableViewCell.swift in Sources */,
 				3FE0D2C31F7697C000183EAC /* ExpensiveByCategoryClass.swift in Sources */,
 				3F4B5F571F706A5600A5075C /* TableViewCell.swift in Sources */,
-				3FE0D2BF1F7688B800183EAC /* ReportTableViewController.swift in Sources */,
 				3F4B5F381F6BC9DC00A5075C /* CategoryViewController.swift in Sources */,
 				3F4B5F411F6BFD5B00A5075C /* DataStore.swift in Sources */,
+				3FE0D2C71F77F1C100183EAC /* AddCategoryViewController.swift in Sources */,
 				3F4B5F251F6BC8A200A5075C /* AppDelegate.swift in Sources */,
 				3F4B5F451F6C089900A5075C /* TransViewController.swift in Sources */,
 				3FE0D2C51F770F9800183EAC /* ChartViewController.swift in Sources */,

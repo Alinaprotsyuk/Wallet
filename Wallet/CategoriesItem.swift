@@ -12,38 +12,43 @@ import Foundation
         
         struct Keys {
             static let item = "item"
+            static let description = "description"
+            static let type = "type"
+        
         }
         
-        private var _item = ""
+        var item = ""
+        var categoryDescription = ""
+        var type = ""
         
         override init() {}
         
    
-        init(item: String) {
-            self._item = item
+        init(item: String, categoryDescription: String, type: String) {
+            self.item = item
+            self.categoryDescription = categoryDescription
+            self.type = type
         }
         
 
         required init(coder decoder: NSCoder) {
 
             if let nameObject = decoder.decodeObject(forKey: Keys.item) as? String {
-                _item = nameObject
+                item = nameObject
+            }
+            if let descriptionObject = decoder.decodeObject(forKey: Keys.description) as? String {
+                categoryDescription = descriptionObject
+            }
+            if let typeObject = decoder.decodeObject(forKey: Keys.type) as? String {
+                item = typeObject
             }
         }
         
        
         func encode(with coder: NSCoder) {
             
-            coder.encode(_item, forKey: Keys.item)
+            coder.encode(item, forKey: Keys.item)
         }
         
-        var name: String {
-            get {
-                return _item
-            }
-            set {
-                _item = newValue
-            }
-        }
     }
 

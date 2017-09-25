@@ -7,5 +7,6 @@ target 'Wallet' do
 
   # Pods for Wallet
     pod 'PieCharts'
+    pod "TextFieldEffects"
 
 end

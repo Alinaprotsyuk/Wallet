@@ -14,15 +14,25 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>TextFieldEffects.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>52C5F9C6618BA38777B3E1466CFE7D2D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>5E4B9D023702B55BE61C5C148DF100EA</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A6A2220E9E829D30B22E6EBBFD03AE7E</key>
+		<key>AD157DB05D853B07648F8E99B8AB94BD</key>
 		<dict>
 			<key>primary</key>
 			<true/>

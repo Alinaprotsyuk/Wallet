@@ -59,11 +59,12 @@ class ChartViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cellForReport", for: indexPath)
-        cell.textLabel?.text = storeForExpensesByCategory[indexPath.row].categoryName
-        cell.detailTextLabel?.text = String(storeForExpensesByCategory[indexPath.row].expenses)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cellForReport", for: indexPath) as? ReportTableViewCell
+        cell?.categoryTitle.text = storeForExpensesByCategory[indexPath.row].categoryName
+        cell?.categoryValue.text = String(storeForExpensesByCategory[indexPath.row].expenses)
+        cell?.categoryColor.backgroundColor = storeForExpensesByCategory[indexPath.row].color
         
-        return cell
+        return cell!
     }
 
     
