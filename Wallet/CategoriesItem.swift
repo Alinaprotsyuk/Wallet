@@ -12,22 +12,15 @@ import Foundation
         
         struct Keys {
             static let item = "item"
-            static let description = "description"
-            static let type = "type"
-        
         }
         
         var item = ""
-        var categoryDescription = ""
-        var type = ""
         
         override init() {}
         
    
-        init(item: String, categoryDescription: String, type: String) {
+        init(item: String) {
             self.item = item
-            self.categoryDescription = categoryDescription
-            self.type = type
         }
         
 
@@ -36,14 +29,7 @@ import Foundation
             if let nameObject = decoder.decodeObject(forKey: Keys.item) as? String {
                 item = nameObject
             }
-            if let descriptionObject = decoder.decodeObject(forKey: Keys.description) as? String {
-                categoryDescription = descriptionObject
-            }
-            if let typeObject = decoder.decodeObject(forKey: Keys.type) as? String {
-                item = typeObject
-            }
         }
-        
        
         func encode(with coder: NSCoder) {
             

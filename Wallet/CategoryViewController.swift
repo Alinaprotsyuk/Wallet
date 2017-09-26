@@ -23,7 +23,7 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
         
        if newCategoryItem.text != "" {
             if let unwrappedText = newCategoryItem.text {
-                let newCategoryListItem = CategoriesItem(item: unwrappedText.capitalized, categoryDescription: "without description", type: "")
+                let newCategoryListItem = CategoriesItem(item: unwrappedText.capitalized)
                 model.saveCategory(item: newCategoryListItem)
                 myCategory.append(newCategoryListItem)
             }

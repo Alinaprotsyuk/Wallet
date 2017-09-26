@@ -12,9 +12,9 @@ class TableViewCell: UITableViewCell {
 
     @IBOutlet weak var valueOfTransaction: UILabel!
     
-    @IBOutlet weak var describingOfTransaction: UILabel!
-    
     @IBOutlet weak var infoOfTransaction: UILabel!
+    
+    @IBOutlet weak var describingOfTransaction: UITextView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

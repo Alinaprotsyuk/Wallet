@@ -31,9 +31,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     override func viewDidAppear(_ animated: Bool) {
         self.allTransactions = self.model.loadData()
         self.tableViewTransactions.reloadData()
-        balance.text = "My balance: " + String(format:"%.2f", model.calculateBalance(item: allTransactions).balance)
-        calculateProfirs.text = "My profits: " + String(format:"%.2f", model.calculateBalance(item: allTransactions).allProfits)
-        calculateSpendings.text = "My spending: " + String(format:"%.2f", model.calculateBalance(item: allTransactions).allSpendings)
+        balance.text = "My balance: " + String(format:"%.2f", calculateBalance(item: allTransactions).balance)
+        calculateProfirs.text = "My profits: " + String(format:"%.2f", calculateBalance(item: allTransactions).allProfits)
+        calculateSpendings.text = "My spending: " + String(format:"%.2f", calculateBalance(item: allTransactions).allSpendings)
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -49,10 +49,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellTrans", for: indexPath) as! TableViewCell
         cell.describingOfTransaction.text = allTransactions[indexPath.row].desc
-        cell.infoOfTransaction.text = allTransactions[indexPath.row].categ + " ☞ " + model.getTime(date: allTransactions[indexPath.row].currentDate)
-        cell.valueOfTransaction.text = allTransactions[indexPath.row].value //String (format: "%.2f", allTransactions[indexPath.row].value)
+        cell.infoOfTransaction.text = allTransactions[indexPath.row].categ + " ☞ " + getTime(date: allTransactions[indexPath.row].currentDate)
+        cell.valueOfTransaction.text = String (format: "%.2f", Float(allTransactions[indexPath.row].value)!)
         return cell
         
+    }
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.accessoryType = .detailButton
+        
+        cell.accessoryView = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
     }
  
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool

@@ -9,16 +9,15 @@
 import Foundation
 import UIKit
 
-class expensesByCategory {
+class ExpensesByCategory {
     var categoryName: String
-    var expenses: Double
+    var expenses: Float
     var color: UIColor
     
-    init (categoryName : String, expenses: Double, color: UIColor){
+    init (categoryName : String, expenses: Float, color: UIColor){
         self.categoryName = categoryName
         self.expenses = expenses
         self.color = color
     }
-    
-    
+
 }

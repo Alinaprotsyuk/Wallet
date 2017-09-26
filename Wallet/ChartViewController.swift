@@ -13,15 +13,18 @@ class ChartViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
     @IBOutlet weak var chartView: PieChart!
     
+    @IBOutlet weak var scroll: UIScrollView!
     
     @IBOutlet weak var tableReport: UITableView!
     
     let model = DataStore.sharedInstnce
     
+    //let expensiveByCategory = [ExpensesByCategory]()
+    
     var allTransactions = [Transaction]()
     var allCategories = [CategoriesItem]()
     
-    var storeForExpensesByCategory = [expensesByCategory]()
+    var storeForExpensesByCategory = [ExpensesByCategory]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +33,7 @@ class ChartViewController: UIViewController, UITableViewDelegate, UITableViewDat
         self.allTransactions = self.model.loadData()
         self.allCategories = self.model.loadCategoriesData()
         self.tableReport.reloadData()
-        storeForExpensesByCategory = model.calculateCategory(transaction: allTransactions, category: allCategories)
+        storeForExpensesByCategory = calculateCategory(transaction: allTransactions, category: allCategories)
         self.navigationItem.title = "Report"
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -44,6 +47,9 @@ class ChartViewController: UIViewController, UITableViewDelegate, UITableViewDat
         // Dispose of any resources that can be recreated.
     }
     
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        return chartView
+    }
     
     // MARK: - Table view data source
     
@@ -61,7 +67,7 @@ class ChartViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellForReport", for: indexPath) as? ReportTableViewCell
         cell?.categoryTitle.text = storeForExpensesByCategory[indexPath.row].categoryName
-        cell?.categoryValue.text = String(storeForExpensesByCategory[indexPath.row].expenses)
+        cell?.categoryValue.text = String(format: "%.2f", storeForExpensesByCategory[indexPath.row].expenses)
         cell?.categoryColor.backgroundColor = storeForExpensesByCategory[indexPath.row].color
         
         return cell!
@@ -75,7 +81,7 @@ class ChartViewController: UIViewController, UITableViewDelegate, UITableViewDat
         return UIColor(red : red, green : green, blue : blue, alpha: 0.5)
     }
     
-     fileprivate var currentColorIndex = 0
+    // fileprivate var currentColorIndex = 0
     
     
     override func viewDidAppear(_ animated: Bool) {
@@ -96,9 +102,9 @@ class ChartViewController: UIViewController, UITableViewDelegate, UITableViewDat
     fileprivate func createModels() -> [PieSliceModel] {
         var models = [PieSliceModel]()
         for item in storeForExpensesByCategory{
-            models.append(PieSliceModel(value: item.expenses, color: item.color))
+            models.append(PieSliceModel(value: Double(item.expenses), color: item.color))
         }
-        currentColorIndex = models.count
+       // currentColorIndex = models.count
         return models
     }
 

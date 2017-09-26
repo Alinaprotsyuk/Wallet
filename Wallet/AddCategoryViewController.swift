@@ -33,7 +33,7 @@ class AddCategoryViewController: UIViewController, UIPickerViewDelegate {
     
     @objc fileprivate func addCategoryItem() {
         if !(categoryTitle.text?.isEmpty)! && !(typeOfCategory.text?.isEmpty)! {
-            let newCategoryListItem = CategoriesItem(item: categoryTitle.text!.capitalized, categoryDescription: describtionCategory.text ?? "Without description", type: typeOfCategory.text!)
+            let newCategoryListItem = CategoriesItem(item: categoryTitle.text!.capitalized)
                 model.saveCategory(item: newCategoryListItem)
                 myCategory.append(newCategoryListItem)
             

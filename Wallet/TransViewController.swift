@@ -8,23 +8,23 @@
 
 import UIKit
 
-class TransViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate,UITextFieldDelegate {
+class TransViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var currentDate: UILabel!
-    
-    @IBOutlet weak var kindOfTransaction: UITextField!
-    
-    @IBOutlet weak var listOfTransactions: UIPickerView!
-    
-    let kindTransaction = ["Spending", "Profit"]
     
     var itemCategoryName : String?
     
     @IBOutlet weak var value: UITextField!
     
-    @IBOutlet weak var desc: UITextField!
+    //@IBOutlet weak var desc: UITextField!
+    
+    var typeOfTransaction : String?
     
     @IBOutlet weak var categotyName: UITextField!
+    
+    @IBOutlet weak var desc: UITextView!
+    
+    @IBOutlet weak var button: UIButton!
     
     let model = DataStore.sharedInstnce
     
@@ -33,10 +33,20 @@ class TransViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "My transaction"
-        currentDate.text = model.getTime(date: Date())
-        listOfTransactions.isHidden = true
-        
-        
+        currentDate.text = getTime(date: Date())
+        //listOfTransactions.isHidden = true
+    }
+    
+    @IBAction func kindOfTransaction(_ sender: UISwitch) {
+        if sender.isOn {
+            button.isEnabled = true
+            categotyName.text = ""
+        }
+        else {
+            button.isEnabled = false
+            typeOfTransaction = "Profit"
+            categotyName.text = "Profit"
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -50,40 +60,19 @@ class TransViewController: UIViewController, UIPickerViewDataSource, UIPickerVie
     }
     
     @IBAction func save(_ sender: Any) {
-        if (value.text?.isEmpty)! || (desc.text?.isEmpty)! || (categotyName.text?.isEmpty)! || (kindOfTransaction.text?.isEmpty)! {
+        if (value.text?.isEmpty)! || (desc.text?.isEmpty)! || (categotyName.text?.isEmpty)! {
             showMessage(message: "You should put all information")
         } else {
-            let newTransaction = Transaction(value: value.text!, desc: desc.text!, categ: categotyName.text!, kind: kindOfTransaction.text!, currentDate: Date())
-               
+            var newTransaction = Transaction()
+            if button.isEnabled{
+                newTransaction = Transaction(value: value.text!, desc: desc.text!, categ: categotyName.text!, kind: "Spending", currentDate: Date())
+            } else{
+                newTransaction = Transaction(value: value.text!, desc: desc.text!, categ: typeOfTransaction!, kind: "Profit" , currentDate: Date())
+            }
             model.saveTransaction(item: newTransaction)
             _ = navigationController?.popViewController(animated: true)
         }
     
-    }
-    
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return kindTransaction.count
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        self.view.endEditing(true)
-        return kindTransaction[row]
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        self.kindOfTransaction.text = self.kindTransaction[row]
-        listOfTransactions.isHidden = true
-    
-    }
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        if textField == self.kindOfTransaction {
-            listOfTransactions.isHidden = false
-        }
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {

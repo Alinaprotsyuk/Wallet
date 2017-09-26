@@ -15,7 +15,7 @@ class DataStore {
     private init() {}
     var categoriesItems: [CategoriesItem] = []
     var transactionsItems: [Transaction] = []
-    var expenses : [expensesByCategory] = []    
+    
     
     var filePathCategory: String {
         let manager = FileManager.default
@@ -65,52 +65,54 @@ class DataStore {
         NSKeyedArchiver.archiveRootObject(transactionsItems, toFile: filePathTransaction)
     }
     
-    func calculateBalance(item: [Transaction]) -> (balance: Double,allSpendings: Double, allProfits: Double) {
-        var sumaSpending = 0.00
-        var sumaProfit = 0.00
-        var balance = 0.00
+   /* func calculateBalance(item: [Transaction]) -> (balance: Float,allSpendings: Float, allProfits: Float) {
+        var sumaSpending : Float = 0.00
+        var sumaProfit : Float = 0.00
+        var balance : Float = 0.00
             for object in transactionsItems {
                 if object.kind == "Spending" {
-                    sumaSpending += Double(object.value)! * 100
+                    sumaSpending += Float(object.value)! * 100
                 } else {
-                    sumaProfit += Double(object.value)! * 100
+                    sumaProfit += Float(object.value)! * 100
                 }
             }
         balance = (sumaProfit - sumaSpending) / 100
         return (balance, sumaSpending / 100, sumaProfit / 100)
     }
     
-    func getTime(date: Date) -> String {
+    /*func getTime(date: Date) -> String {
         //let date = Date()
         
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
         formatter.timeStyle = .short
         return formatter.string(from: date)
-    }
+    }*/
     
-    func randomColor() -> UIColor{
+    /*func randomColor() -> UIColor{
         let red = CGFloat(arc4random_uniform(256))/255.0
         let green = CGFloat(arc4random_uniform(256))/255.0
         let blue = CGFloat(arc4random_uniform(256))/255.0
         return UIColor(red : red, green : green, blue : blue, alpha: 0.5)
-    }
+    }*/
     
-    func calculateCategory (transaction: [Transaction], category: [CategoriesItem]) ->  [expensesByCategory] {
-        expenses = [expensesByCategory]()
+    func calculateCategory (transaction: [Transaction], category: [CategoriesItem]) ->  [ExpensesByCategory] {
+        expenses = [ExpensesByCategory]()
         for sortByCategory in category {
-            var suma = 0.00
+            var suma: Float = 0.00
         
             for item in transaction {
                 if item.categ == sortByCategory.item {
-                    suma += Double(item.value)!
+                    suma += Float(item.value)!
                 }
             }
             
-            expenses.append(expensesByCategory(categoryName: sortByCategory.item, expenses: suma, color: randomColor()))
+            expenses.append(ExpensesByCategory(categoryName: sortByCategory.item, expenses: suma, color: randomColor()))
         }
         
         return expenses
-    }
+    }*/
     
 }
+
+
