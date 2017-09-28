@@ -6,7 +6,7 @@
 //  Copyright © 2017 Alina Protsyuk. All rights reserved.
 //
 
-import UIKit
+/*import UIKit
 
 class AddCategoryViewController: UIViewController, UIPickerViewDelegate {
     
@@ -76,4 +76,4 @@ class AddCategoryViewController: UIViewController, UIPickerViewDelegate {
     }
     */
 
-}
+}*/

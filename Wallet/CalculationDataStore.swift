@@ -9,25 +9,40 @@
 import Foundation
 import UIKit
 
-
     let model = DataStore.sharedInstnce
     var expenses = [ExpensesByCategory]()
     
-    func calculateBalance(item: [Transaction]) -> (balance: Float,allSpendings: Float, allProfits: Float) {
+/*func calculateBalance(item: [Transaction]) -> [Float]{
+    //(balance: Float,allSpendings: Float, allProfits: Float) {
         var sumaSpending : Float = 0.00
         var sumaProfit : Float = 0.00
         var balance : Float = 0.00
         for object in model.transactionsItems {
             if object.kind == "Spending" {
-                sumaSpending += Float(object.value)! * 100
+                sumaSpending += Float(object.value)!
             } else {
-                sumaProfit += Float(object.value)! * 100
+                sumaProfit += Float(object.value)!
             }
         }
-        balance = (sumaProfit - sumaSpending) / 100
-        return (balance, sumaSpending / 100, sumaProfit / 100)
+        balance = sumaProfit - sumaSpending
+    return [balance, sumaSpending, sumaProfit]
+    }*/
+
+func calculateBalance(item: [Transaction]) -> (balance: Float,allSpendings: Float, allProfits: Float) {
+    var sumaSpending : Float = 0.00
+    var sumaProfit : Float = 0.00
+    var balance : Float = 0.00
+    for object in model.transactionsItems {
+        if object.kind == "Spending" {
+            sumaSpending += Float(object.value)! * 100
+        } else {
+            sumaProfit += Float(object.value)! * 100
+        }
     }
-    
+    balance = (sumaProfit - sumaSpending) / 100
+    return (balance, sumaSpending / 100, sumaProfit / 100)
+}
+
     func randomColor() -> UIColor{
         let red = CGFloat(arc4random_uniform(256))/255.0
         let green = CGFloat(arc4random_uniform(256))/255.0
@@ -52,3 +67,23 @@ import UIKit
         return expenses
     }
 
+func generateNewReport(beginDate : Date, endDate : Date, transaction : [Transaction]) -> [Float]{
+    //(balance: Float,allSpendings: Float, allProfits: Float) {
+    var sumaSpending : Float = 0.00
+    var sumaProfit : Float = 0.00
+    var balance : Float = 0.00
+    
+    for object in model.transactionsItems {
+        
+        if (object.currentDate > beginDate || object.currentDate == beginDate) && (object.currentDate < endDate || object.currentDate == endDate) {
+            if object.kind == "Spending" {
+                sumaSpending += Float(object.value)!
+            } else {
+                sumaProfit += Float(object.value)!
+            }
+        }
+        
+    }
+    balance = sumaProfit - sumaSpending
+    return [balance, sumaSpending, sumaProfit]
+}

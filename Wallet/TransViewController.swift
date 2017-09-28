@@ -10,7 +10,7 @@ import UIKit
 
 class TransViewController: UIViewController, UITextFieldDelegate {
 
-    @IBOutlet weak var currentDate: UILabel!
+   // @IBOutlet weak var currentDate: UILabel!
     
     var itemCategoryName : String?
     
@@ -26,6 +26,12 @@ class TransViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var button: UIButton!
     
+    @IBOutlet var datePickerTF: UITextField!
+    
+    let datePicker = UIDatePicker()
+    
+   
+    
     let model = DataStore.sharedInstnce
     
     var myTransaction = [Transaction]()
@@ -33,7 +39,8 @@ class TransViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "My transaction"
-        currentDate.text = getTime(date: Date())
+        //currentDate.text = getTime(date: Date())
+        createDatePicker()
         //listOfTransactions.isHidden = true
     }
     
@@ -41,6 +48,7 @@ class TransViewController: UIViewController, UITextFieldDelegate {
         if sender.isOn {
             button.isEnabled = true
             categotyName.text = ""
+            
         }
         else {
             button.isEnabled = false
@@ -64,15 +72,50 @@ class TransViewController: UIViewController, UITextFieldDelegate {
             showMessage(message: "You should put all information")
         } else {
             var newTransaction = Transaction()
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateStyle = .medium
+            let dateObj = dateFormatter.date(from: datePickerTF.text!)
+            
             if button.isEnabled{
-                newTransaction = Transaction(value: value.text!, desc: desc.text!, categ: categotyName.text!, kind: "Spending", currentDate: Date())
+                newTransaction = Transaction(value: value.text!, desc: desc.text!.capitalized, categ: categotyName.text!, kind: "Spending", currentDate: dateObj!)
             } else{
-                newTransaction = Transaction(value: value.text!, desc: desc.text!, categ: typeOfTransaction!, kind: "Profit" , currentDate: Date())
+                newTransaction = Transaction(value: value.text!, desc: desc.text!.capitalized, categ: typeOfTransaction!, kind: "Profit" , currentDate: dateObj!)
             }
             model.saveTransaction(item: newTransaction)
             _ = navigationController?.popViewController(animated: true)
         }
     
+    }
+    
+    func createDatePicker(){
+        
+        //format for datepicker display
+        datePicker.datePickerMode = .date
+        
+        //assign datepicker to our textfield
+        datePickerTF.inputView = datePicker
+        
+        //create a toolbar
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        
+        //add a done button on this toolbar
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(doneClicked))
+        
+        toolbar.setItems([doneButton], animated: true)
+        
+        datePickerTF.inputAccessoryView = toolbar
+    }
+    
+    func doneClicked(){
+        
+        //format for displaying the date in our textfield
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .none
+        
+        datePickerTF.text = dateFormatter.string(from: datePicker.date)
+        self.view.endEditing(true)
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
@@ -82,7 +125,7 @@ class TransViewController: UIViewController, UITextFieldDelegate {
             let replacementStringIsLegal = string.rangeOfCharacter(from: disallowedCharacterSet as CharacterSet)
             result = (replacementStringIsLegal != nil)
         
-    return result
+        return result
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

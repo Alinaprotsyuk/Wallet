@@ -39,11 +39,13 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "My categories"
+        myCategory.sort (by:{$0.item < $1.item})
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.myCategory = self.model.loadCategoriesData()
+        myCategory.sort (by:{$0.item < $1.item})
     }
     
     override func didReceiveMemoryWarning() {
@@ -83,20 +85,4 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
 
         }
     }
-    
-   /* override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "chooseCategoryItem" {
-            /*let upcoming : TransViewController = (segue.destination as? TransViewController)!
-            let indexPath = self.CategoriesTable.indexPathForSelectedRow
-            let categorySelected = self.category.categoriesItems[(indexPath?.row)!] as? String
-            upcoming.itemCategoryName = categorySelected*/
-            
-            let upcoming = segue.destination as? TransViewController
-            upcoming!.itemCategoryName = sender as? String
-            /*let indexPath = self.CategoriesTable.indexPathForSelectedRow
-            self.CategoriesTable.deselectRow(at: indexPath!, animated: true)*/
-            
-            
-        }
-    }*/
 }

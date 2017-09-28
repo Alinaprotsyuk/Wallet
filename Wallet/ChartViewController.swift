@@ -81,8 +81,6 @@ class ChartViewController: UIViewController, UITableViewDelegate, UITableViewDat
         return UIColor(red : red, green : green, blue : blue, alpha: 0.5)
     }
     
-    // fileprivate var currentColorIndex = 0
-    
     
     override func viewDidAppear(_ animated: Bool) {
         
