@@ -73,6 +73,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         //allTransactions.sort (by:{$0.currentDate > $1.currentDate})
         self.tableViewTransactions.reloadData()
         let balanceItem = calculateBalance(item: allTransactions).balance
+        if balanceItem < 0 {
+            balance.textColor = UIColor.red
+        } else {
+            balance.textColor = UIColor.black
+        }
         balance.text = "My balance: " + String(format:"%.2f", balanceItem) //calculateBalance(item: allTransactions).balance
         calculateProfirs.text = "My profits: " + String(format:"%.2f", calculateBalance(item: allTransactions).allProfits)
         calculateSpendings.text = "My spending: " + String(format:"%.2f", calculateBalance(item: allTransactions).allSpendings)

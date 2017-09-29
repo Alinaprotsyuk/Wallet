@@ -23,6 +23,8 @@ class ChartViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     var allTransactions = [Transaction]()
     var allCategories = [CategoriesItem]()
+    var firstDate : Date?
+    var secondDate : Date?
     
     var storeForExpensesByCategory = [ExpensesByCategory]()
     
@@ -47,10 +49,6 @@ class ChartViewController: UIViewController, UITableViewDelegate, UITableViewDat
         // Dispose of any resources that can be recreated.
     }
     
-    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
-        return chartView
-    }
-    
     // MARK: - Table view data source
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -72,15 +70,6 @@ class ChartViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         return cell!
     }
-
-    
-    func randomColor() -> UIColor{
-        let red = CGFloat(arc4random_uniform(256))/255.0
-        let green = CGFloat(arc4random_uniform(256))/255.0
-        let blue = CGFloat(arc4random_uniform(256))/255.0
-        return UIColor(red : red, green : green, blue : blue, alpha: 0.5)
-    }
-    
     
     override func viewDidAppear(_ animated: Bool) {
         

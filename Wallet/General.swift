@@ -7,7 +7,8 @@
 //
 
 import Foundation
-import UIKit
+
+
 
 func getTime(date: Date) -> String {
     //let date = Date()
@@ -17,4 +18,5 @@ func getTime(date: Date) -> String {
     formatter.timeStyle = .none
     return formatter.string(from: date)
 }
+
 

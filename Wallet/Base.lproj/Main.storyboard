@@ -97,7 +97,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="MJH-nd-8lv" kind="show" id="eOj-eA-jeN"/>
+                                    <segue destination="MJH-nd-8lv" kind="show" id="imr-lz-R1F"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JSe-AG-raG">
@@ -331,7 +331,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PLS-6y-BWa">
-                                <rect key="frame" x="140" y="457" width="100" height="40"/>
+                                <rect key="frame" x="138" y="446" width="100" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="Generate">
@@ -342,26 +342,37 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zon-hX-V2B">
-                                <rect key="frame" x="14" y="566" width="345" height="21"/>
+                                <rect key="frame" x="14" y="541" width="345" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nZm-pM-2os">
-                                <rect key="frame" x="14" y="601" width="345" height="21"/>
+                                <rect key="frame" x="14" y="576" width="345" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oar-Lr-26W">
-                                <rect key="frame" x="16" y="530" width="343" height="21"/>
+                                <rect key="frame" x="16" y="505" width="343" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KM0-jh-UH0">
+                                <rect key="frame" x="138" y="607" width="100" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="Detail">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="4Tw-Sp-duQ" kind="show" id="naA-yb-4I7"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -375,6 +386,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="detailButton" destination="KM0-jh-UH0" id="iU2-pj-gCJ"/>
                         <outlet property="endDate" destination="fbd-6w-ASS" id="YXE-0r-kCH"/>
                         <outlet property="from" destination="yUJ-CO-o4v" id="exP-ds-T33"/>
                         <outlet property="newBalance" destination="Oar-Lr-26W" id="e3H-RU-Bms"/>
@@ -391,7 +403,7 @@
         <!--Chart View Controller-->
         <scene sceneID="LYn-p9-a7X">
             <objects>
-                <viewController id="4Tw-Sp-duQ" customClass="ChartViewController" customModule="Wallet" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChartVC" id="4Tw-Sp-duQ" customClass="ChartViewController" customModule="Wallet" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="7nb-b8-cBs"/>
                         <viewControllerLayoutGuide type="bottom" id="ZQO-YS-eHp"/>
@@ -678,7 +690,8 @@
         <image name="997" width="2083" height="2083"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="hbN-LF-gcA"/>
         <segue reference="FZf-m9-fhG"/>
+        <segue reference="hbN-LF-gcA"/>
+        <segue reference="naA-yb-4I7"/>
     </inferredMetricsTieBreakers>
 </document>
