@@ -10,13 +10,18 @@ import Foundation
 
 
 
-func getTime(date: Date) -> String {
-    //let date = Date()
-    
+func getStringFromDAte(date: Date) -> String {
     let formatter = DateFormatter()
-    formatter.dateStyle = .medium
+    formatter.dateStyle = .long
     formatter.timeStyle = .none
     return formatter.string(from: date)
+}
+
+func getDateFromString(string: String) -> Date{
+    let formatter = DateFormatter()
+    formatter.dateStyle = .long
+    formatter.timeStyle = .none
+    return formatter.date(from: string)!
 }
 
 

@@ -38,34 +38,31 @@ class NewReportViewController: UIViewController, UITextFieldDelegate {
     @IBAction func generateReport(_ sender: UIButton) {
         let start = startDate.date
         let end = endDate.date
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateStyle = .medium
-            dateFormatter.timeStyle = .none
-        
-            from.text = dateFormatter.string(from: start)
-            to.text = dateFormatter.string(from: end)
-            calculate = generateNewReport(beginDate : dateFormatter.date(from: from.text!)!, endDate : dateFormatter.date(from: to.text!)!, transaction : allTransactions)
-            calculateByCategory = calculateCategoryByDay(beginDate: dateFormatter.date(from: from.text!)!, endDate: dateFormatter.date(from: to.text!)!, transaction: allTransactions, category: allCategories)
-            print(calculate[0], calculate[1], calculate[2])
-        for index in calculateByCategory{
-            print(index.categoryName,index.expenses)
+        from.text = getStringFromDAte(date: start)
+        to.text = getStringFromDAte(date: end)
+        calculate = generateNewReport(beginDate : getDateFromString(string: from.text!), endDate : getDateFromString(string: to.text!), transaction : allTransactions)
+        calculateByCategory = calculateCategoryByDay(beginDate: getDateFromString(string: from.text!), endDate: getDateFromString(string: to.text!), transaction: allTransactions, category: allCategories)
+        newProfits.isHidden = false
+        newSpending.isHidden = false
+        newBalance.isHidden = false
+        detailButton.isHidden = false
+        if calculate[0] < 0 {
+            newBalance.textColor = UIColor.red
+        } else {
+            newBalance.textColor = UIColor.black
         }
-        
-            newProfits.isHidden = false
-            newSpending.isHidden = false
-            newBalance.isHidden = false
-            detailButton.isHidden = false
-            if calculate[0] < 0 {
-                newBalance.textColor = UIColor.red
-            } else {
-                newBalance.textColor = UIColor.black
-            }
-            newBalance.text = "Balance: " + String(format: "%.2f", calculate[0])
-            newSpending.text = "Spendding: " + String(format: "%.2f", calculate[1])
-            newProfits.text = "Profits: " + String(format: "%.2f", calculate[2])
+        newBalance.text = "Balance: " + String(format: "%.2f", calculate[0])
+        newSpending.text = "Spendding: " + String(format: "%.2f", calculate[1])
+        newProfits.text = "Profits: " + String(format: "%.2f", calculate[2])
     }
     
     @IBOutlet weak var detailButton: UIButton!
+    
+    @IBAction func showNewReport(_ sender: UIButton) {
+        let myVC = storyboard?.instantiateViewController(withIdentifier: "ChartVC") as! ChartViewController
+        myVC.storeForExpensesByCategory = calculateByCategory
+        navigationController?.pushViewController(myVC, animated: true)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -82,8 +79,5 @@ class NewReportViewController: UIViewController, UITextFieldDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    
-    
 }
 

@@ -17,31 +17,14 @@ class ChartViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     @IBOutlet weak var tableReport: UITableView!
     
-    let model = DataStore.sharedInstnce
-    
-    //let expensiveByCategory = [ExpensesByCategory]()
-    
-    var allTransactions = [Transaction]()
-    var allCategories = [CategoriesItem]()
-    var firstDate : Date?
-    var secondDate : Date?
-    
     var storeForExpensesByCategory = [ExpensesByCategory]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableReport.delegate = self
         self.tableReport.dataSource = self
-        self.allTransactions = self.model.loadData()
-        self.allCategories = self.model.loadCategoriesData()
         self.tableReport.reloadData()
-        storeForExpensesByCategory = calculateCategory(transaction: allTransactions, category: allCategories)
         self.navigationItem.title = "Report"
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        //self.navigationItem.rightBarButtonItem = self.editButtonItem(title: "Chart", style: .Plain, target: self, action: Selector("editTableView"))
     }
     
     override func didReceiveMemoryWarning() {
@@ -91,10 +74,10 @@ class ChartViewController: UIViewController, UITableViewDelegate, UITableViewDat
         for item in storeForExpensesByCategory{
             models.append(PieSliceModel(value: Double(item.expenses), color: item.color))
         }
-       // currentColorIndex = models.count
+        // currentColorIndex = models.count
         return models
     }
-
+    
     // MARK: - Layers
     
     fileprivate func createPlainTextLayer() -> PiePlainTextLayer {

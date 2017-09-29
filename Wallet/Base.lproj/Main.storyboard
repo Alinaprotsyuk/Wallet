@@ -13,7 +13,7 @@
         <!--My wallet-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Wallet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MainVC" id="BYZ-38-t0r" customClass="ViewController" customModule="Wallet" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -36,7 +36,7 @@
                                     <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="4Tw-Sp-duQ" kind="show" id="vbY-hx-nbu"/>
+                                    <action selector="showAllReport:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KB8-VY-E6r"/>
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="81" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qvV-Lb-igH">
@@ -284,7 +284,7 @@
         <!--New Report View Controller-->
         <scene sceneID="XFB-cq-zvE">
             <objects>
-                <viewController id="MJH-nd-8lv" customClass="NewReportViewController" customModule="Wallet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NewReportVC" id="MJH-nd-8lv" customClass="NewReportViewController" customModule="Wallet" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="cIY-i8-kRy"/>
                         <viewControllerLayoutGuide type="bottom" id="g8a-Pp-iXZ"/>
@@ -316,16 +316,18 @@
                                     <!--2017-09-27 17:30:42 +0000-->
                                 </date>
                             </datePicker>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="From:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yUJ-CO-o4v">
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="From:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yUJ-CO-o4v">
                                 <rect key="frame" x="16" y="137" width="343" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="To:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jif-sU-JRl">
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="To:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jif-sU-JRl">
                                 <rect key="frame" x="16" y="289" width="343" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -370,7 +372,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="4Tw-Sp-duQ" kind="show" id="naA-yb-4I7"/>
+                                    <action selector="showNewReport:" destination="MJH-nd-8lv" eventType="touchUpInside" id="40Q-C5-2gn"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -413,10 +415,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="997" translatesAutoresizingMaskIntoConstraints="NO" id="7JQ-i5-Zl9">
-                                <rect key="frame" x="0.0" y="155" width="375" height="356"/>
+                                <rect key="frame" x="0.0" y="111" width="375" height="444"/>
                             </imageView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" maximumZoomScale="4" translatesAutoresizingMaskIntoConstraints="NO" id="AjK-rv-nwh">
-                                <rect key="frame" x="0.0" y="64" width="375" height="307"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="351"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qLC-3X-NfY" customClass="PieChart" customModule="PieCharts">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="291"/>
@@ -440,7 +442,7 @@
                                 </constraints>
                             </scrollView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="clN-Ed-1oL">
-                                <rect key="frame" x="0.0" y="363" width="375" height="304"/>
+                                <rect key="frame" x="0.0" y="319" width="375" height="348"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cellForReport" id="mUy-NB-cT7" customClass="ReportTableViewCell" customModule="Wallet" customModuleProvider="target">
@@ -536,31 +538,6 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="RKU-lG-9Ix">
-                                <rect key="frame" x="10" y="151" width="355" height="516"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <color key="sectionIndexBackgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="sectionIndexTrackingBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="ck5-AX-cDT">
-                                        <rect key="frame" x="0.0" y="28" width="355" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ck5-AX-cDT" id="XDQ-5x-VUu">
-                                            <rect key="frame" x="0.0" y="0.0" width="355" height="44"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                    </tableViewCell>
-                                </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="dOU-cc-pQi" id="bxG-6T-9MI"/>
-                                    <outlet property="delegate" destination="dOU-cc-pQi" id="KPS-k0-avm"/>
-                                </connections>
-                            </tableView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Add new category of spending here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Prb-ol-GqA" customClass="AkiraTextField" customModule="TextFieldEffects">
                                 <rect key="frame" x="10" y="94" width="355" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -577,6 +554,27 @@
                                     <action selector="addCategory:" destination="dOU-cc-pQi" eventType="touchUpInside" id="KQH-nB-Rmz"/>
                                 </connections>
                             </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="RKU-lG-9Ix">
+                                <rect key="frame" x="10" y="151" width="355" height="516"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" alpha="0.29999999999999999" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="ck5-AX-cDT">
+                                        <rect key="frame" x="0.0" y="28" width="355" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ck5-AX-cDT" id="XDQ-5x-VUu">
+                                            <rect key="frame" x="0.0" y="0.0" width="355" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="dOU-cc-pQi" id="bxG-6T-9MI"/>
+                                    <outlet property="delegate" destination="dOU-cc-pQi" id="KPS-k0-avm"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -692,6 +690,5 @@
     <inferredMetricsTieBreakers>
         <segue reference="FZf-m9-fhG"/>
         <segue reference="hbN-LF-gcA"/>
-        <segue reference="naA-yb-4I7"/>
     </inferredMetricsTieBreakers>
 </document>

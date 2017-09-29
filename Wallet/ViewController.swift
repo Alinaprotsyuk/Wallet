@@ -61,15 +61,22 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     let model = DataStore.sharedInstnce
     
     var allTransactions = [Transaction]()
+    var allCategories = [CategoriesItem]()
+    var calculateByCategory = [ExpensesByCategory]()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "My wallet"
+        calculateByCategory = calculateCategory(transaction: allTransactions, category: allCategories)
+        for index in calculateByCategory{
+            print(index.categoryName,index.expenses,index.color)
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         self.allTransactions = self.model.loadData()
+        self.allCategories = self.model.loadCategoriesData()
         //allTransactions.sort (by:{$0.currentDate > $1.currentDate})
         self.tableViewTransactions.reloadData()
         let balanceItem = calculateBalance(item: allTransactions).balance
@@ -81,6 +88,16 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         balance.text = "My balance: " + String(format:"%.2f", balanceItem) //calculateBalance(item: allTransactions).balance
         calculateProfirs.text = "My profits: " + String(format:"%.2f", calculateBalance(item: allTransactions).allProfits)
         calculateSpendings.text = "My spending: " + String(format:"%.2f", calculateBalance(item: allTransactions).allSpendings)
+        calculateByCategory = calculateCategory(transaction: allTransactions, category: allCategories)
+        for index in calculateByCategory{
+            print(index.categoryName,index.expenses,index.color)
+        }
+    }
+    
+    @IBAction func showAllReport(_ sender: UIButton) {
+        let myVC = storyboard?.instantiateViewController(withIdentifier: "ChartVC") as! ChartViewController
+        myVC.storeForExpensesByCategory = calculateByCategory
+        navigationController?.pushViewController(myVC, animated: true)
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -96,7 +113,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellTrans", for: indexPath) as! TableViewCell
         cell.describingOfTransaction.text = allTransactions[indexPath.row].desc
-        cell.infoOfTransaction.text = allTransactions[indexPath.row].categ + " ☞ " + getTime(date: allTransactions[indexPath.row].currentDate)
+        cell.infoOfTransaction.text = allTransactions[indexPath.row].categ + " ☞ " + getStringFromDAte(date: allTransactions[indexPath.row].currentDate)
         cell.valueOfTransaction.text = String (format: "%.2f", Float(allTransactions[indexPath.row].value)!)
         return cell
         
