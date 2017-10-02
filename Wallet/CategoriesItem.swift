@@ -14,36 +14,27 @@ import Foundation
             static let item = "item"
         }
         
-        private var _item = ""
+        var item = ""
         
         override init() {}
         
    
         init(item: String) {
-            self._item = item
+            self.item = item
         }
         
 
         required init(coder decoder: NSCoder) {
 
             if let nameObject = decoder.decodeObject(forKey: Keys.item) as? String {
-                _item = nameObject
+                item = nameObject
             }
         }
-        
        
         func encode(with coder: NSCoder) {
             
-            coder.encode(_item, forKey: Keys.item)
+            coder.encode(item, forKey: Keys.item)
         }
         
-        var name: String {
-            get {
-                return _item
-            }
-            set {
-                _item = newValue
-            }
-        }
     }
 

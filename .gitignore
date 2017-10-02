@@ -8,5 +8,4 @@
 *.perspectivev3
 !default.perspectivev3
 xcuserdata/
-*.xcuserstate
-Wallet.xcodeproj/project.xcworkspace/xcuserdata/student.xcuserdatad/UserInterfaceState.xcuserstate
+**/*.xcuserstate

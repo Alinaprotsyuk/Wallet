@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class DataStore {
     
@@ -14,7 +15,6 @@ class DataStore {
     private init() {}
     var categoriesItems: [CategoriesItem] = []
     var transactionsItems: [Transaction] = []
-    
     
     
     var filePathCategory: String {
@@ -45,10 +45,11 @@ class DataStore {
         if let ourData = NSKeyedUnarchiver.unarchiveObject(withFile: filePathTransaction) as? [Transaction] {
             self.transactionsItems = ourData
         }
+        
         return self.transactionsItems
     }
     
-    func loadData() -> [CategoriesItem] {
+    func loadCategoriesData() -> [CategoriesItem] {
         if let ourData = NSKeyedUnarchiver.unarchiveObject(withFile: filePathCategory) as? [CategoriesItem] {
             self.categoriesItems = ourData
         }
@@ -65,18 +66,6 @@ class DataStore {
         NSKeyedArchiver.archiveRootObject(transactionsItems, toFile: filePathTransaction)
     }
     
-    func calculateBalance(item: [Transaction]) -> Double {
-        var sumaSpending = 0.00
-        var sumaProfit = 0.00
-        var balance = 0.00
-            for object in transactionsItems {
-                if object.kind == "Spending" {
-                    sumaSpending += Double(object.value)! * 100
-                } else {
-                    sumaProfit += Double(object.value)! * 100
-                }
-            }
-        balance = (sumaProfit - sumaSpending) / 100
-        return balance
-    }
 }
+
+

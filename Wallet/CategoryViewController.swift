@@ -21,7 +21,7 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
     
     @IBAction func addCategory(_ sender: UIButton) {
         
-        if newCategoryItem.text != "" {
+       if newCategoryItem.text != "" {
             if let unwrappedText = newCategoryItem.text {
                 let newCategoryListItem = CategoriesItem(item: unwrappedText.capitalized)
                 model.saveCategory(item: newCategoryListItem)
@@ -38,11 +38,14 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.title = "My categories"
+        myCategory.sort (by:{$0.item < $1.item})
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.myCategory = self.model.loadData()
+        self.myCategory = self.model.loadCategoriesData()
+        myCategory.sort (by:{$0.item < $1.item})
     }
     
     override func didReceiveMemoryWarning() {
@@ -56,7 +59,7 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
-        cell.textLabel?.text = myCategory[indexPath.row].name
+        cell.textLabel?.text = myCategory[indexPath.row].item
         return cell
     }
     
@@ -76,26 +79,10 @@ class CategoryViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if enter {
-            let selectedCategory = myCategory[indexPath.row].name
+            let selectedCategory = myCategory[indexPath.row].item
             self.saveAction!(selectedCategory)
             self.navigationController?.popViewController(animated: true)
 
         }
     }
-    
-   /* override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "chooseCategoryItem" {
-            /*let upcoming : TransViewController = (segue.destination as? TransViewController)!
-            let indexPath = self.CategoriesTable.indexPathForSelectedRow
-            let categorySelected = self.category.categoriesItems[(indexPath?.row)!] as? String
-            upcoming.itemCategoryName = categorySelected*/
-            
-            let upcoming = segue.destination as? TransViewController
-            upcoming!.itemCategoryName = sender as? String
-            /*let indexPath = self.CategoriesTable.indexPathForSelectedRow
-            self.CategoriesTable.deselectRow(at: indexPath!, animated: true)*/
-            
-            
-        }
-    }*/
 }

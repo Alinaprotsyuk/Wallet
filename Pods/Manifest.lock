@@ -1,0 +1,15 @@
+PODS:
+  - PieCharts (0.0.5)
+  - TextFieldEffects (1.3.3)
+
+DEPENDENCIES:
+  - PieCharts
+  - TextFieldEffects
+
+SPEC CHECKSUMS:
+  PieCharts: a0fb4784a3460088c8ba7dfb00b89784ddaa7e70
+  TextFieldEffects: 8706f53525f1ce51c8921b7af32237caab50c467
+
+PODFILE CHECKSUM: 9200e63c30e9fbe0919b86769202906304727477
+
+COCOAPODS: 1.3.1
