@@ -9,14 +9,10 @@
 import UIKit
 
 class TransViewController: UIViewController, UITextFieldDelegate {
-
-   // @IBOutlet weak var currentDate: UILabel!
     
     var itemCategoryName : String?
     
     @IBOutlet weak var value: UITextField!
-    
-    //@IBOutlet weak var desc: UITextField!
     
     var typeOfTransaction : String?
     
@@ -30,31 +26,30 @@ class TransViewController: UIViewController, UITextFieldDelegate {
     
     let datePicker = UIDatePicker()
     
-   
+    @IBOutlet weak var type: UISegmentedControl!
     
+    @IBOutlet weak var toSeeChooseOfTransaction: UILabel!
+    
+    @IBAction func chooseTypeOfTransaction(_ sender: UISegmentedControl) {
+        if type.selectedSegmentIndex == 0 {
+            button.isEnabled = false
+            typeOfTransaction = "Profit"
+            categotyName.text = "Profit"
+            toSeeChooseOfTransaction.text = "Profit"
+        } else {
+            button.isEnabled = true
+            categotyName.text = ""
+            toSeeChooseOfTransaction.text = "Spending"
+        }
+    }
     let model = DataStore.sharedInstnce
-    
-    var myTransaction = [Transaction]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "My transaction"
-        //currentDate.text = getTime(date: Date())
         createDatePicker()
-        //listOfTransactions.isHidden = true
-    }
-    
-    @IBAction func kindOfTransaction(_ sender: UISwitch) {
-        if sender.isOn {
-            button.isEnabled = true
-            categotyName.text = ""
-            
-        }
-        else {
-            button.isEnabled = false
-            typeOfTransaction = "Profit"
-            categotyName.text = "Profit"
-        }
+        type.selectedSegmentIndex = 1
+        toSeeChooseOfTransaction.text = "Spending"
     }
     
     override func didReceiveMemoryWarning() {
@@ -72,14 +67,11 @@ class TransViewController: UIViewController, UITextFieldDelegate {
             showMessage(message: "You should put all information")
         } else {
             var newTransaction = Transaction()
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateStyle = .medium
-            let dateObj = dateFormatter.date(from: datePickerTF.text!)
-            
+            let dateObj = ConvertDate.getDateFromString(string: datePickerTF.text!)
             if button.isEnabled{
-                newTransaction = Transaction(value: value.text!, desc: desc.text!.capitalized, categ: categotyName.text!, kind: "Spending", currentDate: dateObj!)
+                newTransaction = Transaction(value: value.text!, desc: desc.text!.capitalized, categ: categotyName.text!, kind: "Spending", currentDate: dateObj)
             } else{
-                newTransaction = Transaction(value: value.text!, desc: desc.text!.capitalized, categ: typeOfTransaction!, kind: "Profit" , currentDate: dateObj!)
+                newTransaction = Transaction(value: value.text!, desc: desc.text!.capitalized, categ: typeOfTransaction!, kind: "Profit" , currentDate: dateObj)
             }
             model.saveTransaction(item: newTransaction)
             _ = navigationController?.popViewController(animated: true)
@@ -108,29 +100,20 @@ class TransViewController: UIViewController, UITextFieldDelegate {
     }
     
     func doneClicked(){
-        
-        //format for displaying the date in our textfield
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .medium
-        dateFormatter.timeStyle = .none
-        
-        datePickerTF.text = dateFormatter.string(from: datePicker.date)
+        datePickerTF.text = ConvertDate.getStringFromDate(date: datePicker.date)
         self.view.endEditing(true)
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         var result = true
-        
-            let disallowedCharacterSet = NSCharacterSet(charactersIn: "0123456789.-")
-            let replacementStringIsLegal = string.rangeOfCharacter(from: disallowedCharacterSet as CharacterSet)
-            result = (replacementStringIsLegal != nil)
-        
+        let disallowedCharacterSet = NSCharacterSet(charactersIn: "0123456789.-")
+        let replacementStringIsLegal = string.rangeOfCharacter(from: disallowedCharacterSet as CharacterSet)
+        result = (replacementStringIsLegal != nil)
         return result
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "chooseCategoryItem" {
-            
             if let vc = segue.destination as? CategoryViewController {
                 vc.enter = true
                 vc.saveAction = {selectedCategory in
@@ -139,9 +122,6 @@ class TransViewController: UIViewController, UITextFieldDelegate {
             }
         }
     }
-    
-
-    
 }
 
 

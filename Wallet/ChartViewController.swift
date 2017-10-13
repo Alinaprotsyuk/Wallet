@@ -34,11 +34,6 @@ class ChartViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     // MARK: - Table view data source
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
-    }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return storeForExpensesByCategory.count
@@ -48,14 +43,12 @@ class ChartViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellForReport", for: indexPath) as? ReportTableViewCell
         cell?.categoryTitle.text = storeForExpensesByCategory[indexPath.row].categoryName
-        cell?.categoryValue.text = String(format: "%.2f", storeForExpensesByCategory[indexPath.row].expenses)
+        cell?.categoryValue.text = String(format: "%.2f", storeForExpensesByCategory[indexPath.row].expenses) + " ₴"
         cell?.categoryColor.backgroundColor = storeForExpensesByCategory[indexPath.row].color
-        
         return cell!
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        
         chartView.layers = [createPlainTextLayer(), createTextWithLinesLayer()]
         chartView.delegate = self
         chartView.models = createModels() // order  important - models have to be set at the end

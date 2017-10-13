@@ -18,8 +18,8 @@
 		3F4B5F451F6C089900A5075C /* TransViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4B5F441F6C089900A5075C /* TransViewController.swift */; };
 		3F4B5F481F6D3BD400A5075C /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4B5F471F6D3BD400A5075C /* Transaction.swift */; };
 		3F4B5F571F706A5600A5075C /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4B5F561F706A5600A5075C /* TableViewCell.swift */; };
-		3F6CB3C81F7A939A00AF63AB /* CalculationDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6CB3C71F7A939A00AF63AB /* CalculationDataStore.swift */; };
-		3F6CB3CA1F7A96F100AF63AB /* General.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6CB3C91F7A96F100AF63AB /* General.swift */; };
+		3F4E4E861F87D25A00583EFE /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4E4E851F87D25A00583EFE /* Alert.swift */; };
+		3F6CB3CA1F7A96F100AF63AB /* ConvertDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6CB3C91F7A96F100AF63AB /* ConvertDate.swift */; };
 		3F6CB3CC1F7BF53500AF63AB /* NewReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6CB3CB1F7BF53500AF63AB /* NewReportViewController.swift */; };
 		3FE0D2C31F7697C000183EAC /* ExpensiveByCategoryClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE0D2C21F7697C000183EAC /* ExpensiveByCategoryClass.swift */; };
 		3FE0D2C51F770F9800183EAC /* ChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE0D2C41F770F9800183EAC /* ChartViewController.swift */; };
@@ -43,8 +43,8 @@
 		3F4B5F441F6C089900A5075C /* TransViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransViewController.swift; sourceTree = "<group>"; };
 		3F4B5F471F6D3BD400A5075C /* Transaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		3F4B5F561F706A5600A5075C /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
-		3F6CB3C71F7A939A00AF63AB /* CalculationDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalculationDataStore.swift; sourceTree = "<group>"; };
-		3F6CB3C91F7A96F100AF63AB /* General.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = General.swift; sourceTree = "<group>"; };
+		3F4E4E851F87D25A00583EFE /* Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
+		3F6CB3C91F7A96F100AF63AB /* ConvertDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConvertDate.swift; sourceTree = "<group>"; };
 		3F6CB3CB1F7BF53500AF63AB /* NewReportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewReportViewController.swift; sourceTree = "<group>"; };
 		3FE0D2C21F7697C000183EAC /* ExpensiveByCategoryClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpensiveByCategoryClass.swift; sourceTree = "<group>"; };
 		3FE0D2C41F770F9800183EAC /* ChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartViewController.swift; sourceTree = "<group>"; };
@@ -64,12 +64,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3F00A07C1F7D7C2500047E16 /* NewReportPage */ = {
+		3F00A07C1F7D7C2500047E16 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				3F6CB3CB1F7BF53500AF63AB /* NewReportViewController.swift */,
+				3F4B5F561F706A5600A5075C /* TableViewCell.swift */,
+				3FE0D2C91F7956C600183EAC /* ReportTableViewCell.swift */,
 			);
-			name = NewReportPage;
+			name = View;
 			sourceTree = "<group>";
 		};
 		3F4B5F181F6BC8A200A5075C = {
@@ -94,16 +95,10 @@
 		3F4B5F231F6BC8A200A5075C /* Wallet */ = {
 			isa = PBXGroup;
 			children = (
-				3F4B5F261F6BC8A200A5075C /* ViewController.swift */,
-				3F4B5F561F706A5600A5075C /* TableViewCell.swift */,
-				3F4B5F281F6BC8A200A5075C /* Main.storyboard */,
-				3F4B5F401F6BFD5B00A5075C /* DataStore.swift */,
-				3F6CB3C71F7A939A00AF63AB /* CalculationDataStore.swift */,
-				3F6CB3C91F7A96F100AF63AB /* General.swift */,
-				3F00A07C1F7D7C2500047E16 /* NewReportPage */,
-				3FE0D2C81F79525C00183EAC /* ChartPage */,
-				3F4B5F3B1F6BF53500A5075C /* CategoryPage */,
-				3F4B5F461F6C08AB00A5075C /* NewTransactionPage */,
+				3FFEA02D1F86B35400AEDAEF /* API */,
+				3FFEA02B1F86A3CB00AEDAEF /* Model */,
+				3FFEA02C1F86A50A00AEDAEF /* Controller */,
+				3F00A07C1F7D7C2500047E16 /* View */,
 			);
 			path = Wallet;
 			sourceTree = "<group>";
@@ -113,39 +108,44 @@
 			children = (
 				3F4B5F241F6BC8A200A5075C /* AppDelegate.swift */,
 				3F4B5F2B1F6BC8A200A5075C /* Assets.xcassets */,
-				3F4B5F2D1F6BC8A200A5075C /* LaunchScreen.storyboard */,
 				3F4B5F301F6BC8A200A5075C /* Info.plist */,
 			);
 			name = "Support files";
 			path = Wallet;
 			sourceTree = "<group>";
 		};
-		3F4B5F3B1F6BF53500A5075C /* CategoryPage */ = {
+		3FFEA02B1F86A3CB00AEDAEF /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				3F4B5F371F6BC9DC00A5075C /* CategoryViewController.swift */,
-				3F4B5F391F6BE21200A5075C /* CategoriesItem.swift */,
-			);
-			name = CategoryPage;
-			sourceTree = "<group>";
-		};
-		3F4B5F461F6C08AB00A5075C /* NewTransactionPage */ = {
-			isa = PBXGroup;
-			children = (
-				3F4B5F441F6C089900A5075C /* TransViewController.swift */,
+				3F4B5F401F6BFD5B00A5075C /* DataStore.swift */,
 				3F4B5F471F6D3BD400A5075C /* Transaction.swift */,
+				3F4B5F391F6BE21200A5075C /* CategoriesItem.swift */,
+				3FE0D2C21F7697C000183EAC /* ExpensiveByCategoryClass.swift */,
+				3F6CB3C91F7A96F100AF63AB /* ConvertDate.swift */,
 			);
-			name = NewTransactionPage;
+			name = Model;
 			sourceTree = "<group>";
 		};
-		3FE0D2C81F79525C00183EAC /* ChartPage */ = {
+		3FFEA02C1F86A50A00AEDAEF /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				3F4B5F261F6BC8A200A5075C /* ViewController.swift */,
+				3F6CB3CB1F7BF53500AF63AB /* NewReportViewController.swift */,
 				3FE0D2C41F770F9800183EAC /* ChartViewController.swift */,
-				3FE0D2C21F7697C000183EAC /* ExpensiveByCategoryClass.swift */,
-				3FE0D2C91F7956C600183EAC /* ReportTableViewCell.swift */,
+				3F4B5F371F6BC9DC00A5075C /* CategoryViewController.swift */,
+				3F4B5F441F6C089900A5075C /* TransViewController.swift */,
+				3F4E4E851F87D25A00583EFE /* Alert.swift */,
 			);
-			name = ChartPage;
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		3FFEA02D1F86B35400AEDAEF /* API */ = {
+			isa = PBXGroup;
+			children = (
+				3F4B5F281F6BC8A200A5075C /* Main.storyboard */,
+				3F4B5F2D1F6BC8A200A5075C /* LaunchScreen.storyboard */,
+			);
+			name = API;
 			sourceTree = "<group>";
 		};
 		665A1CC8718AC072B86F30C2 /* Pods */ = {
@@ -302,11 +302,11 @@
 				3F6CB3CC1F7BF53500AF63AB /* NewReportViewController.swift in Sources */,
 				3FE0D2CA1F7956C600183EAC /* ReportTableViewCell.swift in Sources */,
 				3FE0D2C31F7697C000183EAC /* ExpensiveByCategoryClass.swift in Sources */,
-				3F6CB3C81F7A939A00AF63AB /* CalculationDataStore.swift in Sources */,
+				3F4E4E861F87D25A00583EFE /* Alert.swift in Sources */,
 				3F4B5F571F706A5600A5075C /* TableViewCell.swift in Sources */,
 				3F4B5F381F6BC9DC00A5075C /* CategoryViewController.swift in Sources */,
 				3F4B5F411F6BFD5B00A5075C /* DataStore.swift in Sources */,
-				3F6CB3CA1F7A96F100AF63AB /* General.swift in Sources */,
+				3F6CB3CA1F7A96F100AF63AB /* ConvertDate.swift in Sources */,
 				3F4B5F251F6BC8A200A5075C /* AppDelegate.swift in Sources */,
 				3F4B5F451F6C089900A5075C /* TransViewController.swift in Sources */,
 				3FE0D2C51F770F9800183EAC /* ChartViewController.swift in Sources */,

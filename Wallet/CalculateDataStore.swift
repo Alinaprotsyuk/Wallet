@@ -9,14 +9,17 @@
 import Foundation
 import UIKit
 
-    let model = DataStore.sharedInstnce
-    var expenses = [ExpensesByCategory]()
+/*typealias Balance = (balance: Float,allSpendings: Float, allProfits: Float)
 
-    func calculateBalance(item: [Transaction]) -> (balance: Float,allSpendings: Float, allProfits: Float) {
+class CalculateDataStore{
+    
+    
+    
+    func calculateGeneral() -> (Balance) {
         var sumaSpending : Float = 0.00
         var sumaProfit : Float = 0.00
         var balance : Float = 0.00
-        for object in model.transactionsItems {
+        for object in transactionsItems{
             if object.kind == "Spending" {
                 sumaSpending += Float(object.value)! * 100
             } else {
@@ -27,7 +30,13 @@ import UIKit
         return (balance, sumaSpending / 100, sumaProfit / 100)
     }
 
-    func randomColor() -> UIColor{
+}*/
+
+
+
+
+
+   /* func randomColor() -> UIColor{
         let red = CGFloat(arc4random_uniform(256))/255.0
         let green = CGFloat(arc4random_uniform(256))/255.0
         let blue = CGFloat(arc4random_uniform(256))/255.0
@@ -86,4 +95,4 @@ import UIKit
             }
     
         return expenses
-    }
+    }*/

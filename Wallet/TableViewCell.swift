@@ -10,6 +10,8 @@ import UIKit
 
 class TableViewCell: UITableViewCell {
 
+    @IBOutlet weak var dateOfTransaction: UILabel!
+    
     @IBOutlet weak var valueOfTransaction: UILabel!
     
     @IBOutlet weak var infoOfTransaction: UILabel!

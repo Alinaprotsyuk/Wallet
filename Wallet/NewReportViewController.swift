@@ -11,12 +11,11 @@ import UIKit
 class NewReportViewController: UIViewController, UITextFieldDelegate {
     
     let model = DataStore.sharedInstnce
-    var allTransactions = [Transaction]()
-    var allCategories = [CategoriesItem]()
-    var calculate = [Float]()
+
     var calculateByCategory = [ExpensesByCategory]()
     
     @IBOutlet weak var to: UILabel!
+    
     @IBOutlet weak var from: UILabel!
     
     @IBOutlet weak var startDate: UIDatePicker!
@@ -29,7 +28,7 @@ class NewReportViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var newProfits: UILabel!
     
-    func showMessage(message: String){
+    private func showMessage(message: String){
         let alert = UIAlertController(title: "Warning", message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
@@ -38,22 +37,23 @@ class NewReportViewController: UIViewController, UITextFieldDelegate {
     @IBAction func generateReport(_ sender: UIButton) {
         let start = startDate.date
         let end = endDate.date
-        from.text = getStringFromDAte(date: start)
-        to.text = getStringFromDAte(date: end)
-        calculate = generateNewReport(beginDate : getDateFromString(string: from.text!), endDate : getDateFromString(string: to.text!), transaction : allTransactions)
-        calculateByCategory = calculateCategoryByDay(beginDate: getDateFromString(string: from.text!), endDate: getDateFromString(string: to.text!), transaction: allTransactions, category: allCategories)
+        from.text = ConvertDate.getStringFromDate(date: start)
+        to.text = ConvertDate.getStringFromDate(date: end)
         newProfits.isHidden = false
         newSpending.isHidden = false
         newBalance.isHidden = false
         detailButton.isHidden = false
-        if calculate[0] < 0 {
+        let calculate = model.generateNewReport(beginDate : ConvertDate.getDateFromString(string: from.text!), endDate : ConvertDate.getDateFromString(string: to.text!))
+        calculateByCategory = model.calculateCategory(beginDate: ConvertDate.getDateFromString(string: from.text!), endDate: ConvertDate.getDateFromString(string: to.text!))
+        
+        if calculate.balance < 0 {
             newBalance.textColor = UIColor.red
         } else {
             newBalance.textColor = UIColor.black
         }
-        newBalance.text = "Balance: " + String(format: "%.2f", calculate[0])
-        newSpending.text = "Spendding: " + String(format: "%.2f", calculate[1])
-        newProfits.text = "Profits: " + String(format: "%.2f", calculate[2])
+        newBalance.text = "Balance: " + String(format: "%.2f", calculate.balance) + " ₴"
+        newSpending.text = "Spendding: " + String(format: "%.2f", calculate.allSpendings) + " ₴"
+        newProfits.text = "Profits: " + String(format: "%.2f", calculate.allProfits) + " ₴"
     }
     
     @IBOutlet weak var detailButton: UIButton!
@@ -67,8 +67,7 @@ class NewReportViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "New report"
-        self.allTransactions = self.model.loadData()
-        self.allCategories = self.model.loadCategoriesData()
+
         newProfits.isHidden = true
         newSpending.isHidden = true
         newBalance.isHidden = true
